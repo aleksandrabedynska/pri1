@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <math.h>
 #include <limits.h>
+#include <stdlib.h>
 
 unsigned long long int factorial(int m);
 long double exp_squar(double a, int m);
@@ -29,25 +30,28 @@ void main()
 		for (int i = 0; i < n + 1; i++)
 		{
 			denominator = denominator + exp_squar(x, 2 * i + 1) / factorial(2 * i + 1);
-			if (denominator == 0)
-			{
-				printf("Invalid input, division by 0");
-				break;
-			}
+		}
+		if (denominator == 0)
+		{
+			printf("Invalid input, division by 0");
+			exit(1);
 		}
 		ctgh = numerator / denominator;
 		printf("The value of hyperbolic tangens derived from series is: %Lf \n", ctgh);
 		printf("The value of hyperbolic tangens calculated by math.h library is: %Lf \n", ctgh_m);
-		error = (ctgh - ctgh_m) / ctgh_m * 100;
+		error = (ctgh - ctgh_m) / ctgh_m * 100.0f;
 		printf("Error equals to : %Lf %%", error);
 
 	}
 	else
-		printf("invalid value of n \n");
+	{
+		printf("invalid value of n : termination tiggered \n");
+		//exit(1);
+	}
 	
 	int ch;		//DELETE B4 RELEASE
 	scanf_s("%d", &ch);		//DELETE B4 RELEASE
-	return;
+	exit(0);
 }
 unsigned long long int factorial(int m)
 {
@@ -60,10 +64,16 @@ long double exp_squar(double a, int m)
 {
 	if (m == 0)
 		return 1;
-	if (m == 1)
+	else
+		if (m == 1)
 		return a;
-	if (m % 2 == 0)
+	else
+		if (m % 2 == 0)
 		return exp_squar(a*a, m / 2);
-	if (m % 2 == !0)
+	
+	else
+		if (m % 2 == !0)
 		return (a*exp_squar(a*a, (m - 1) / 2));
+	else
+		return 0;
 }
