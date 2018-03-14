@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <math.h>
-#include <limits.h>
 #include <stdlib.h>
 
 unsigned long long int factorial(int m);	// funcja liczaca silnie z liczby algorytmem rekurencyjnym, zwraca wartosc typu unsigned long long int aby liczyla silnie z mozliwie duzej liczby
